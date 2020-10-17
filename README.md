@@ -31,9 +31,17 @@ ln -s *path*/metadata.desktop kwin-script-grid-tiling.desktop
 
 *replace `~/.local/share` for `/usr/share` in Local Installation (Advanced) Method*
 
+plasmapkg2 --type kwinscript -i .
+
+or update
+
+plasmapkg2 --type kwinscript -u .
+
 ## Uninstall  
 
 Delete the linked or copied files that you created during installation. To remove installed scripts by `kpackagetool5`, run the same command again but this time with `-r` instead of `-i` to remove (see manual of `kpackagetool5` for more info)
+
+plasmapkg2 --type kwinscript -r .
 
 ## Functionality
 - automatically tile clients, up to any grid size of clients per desktop

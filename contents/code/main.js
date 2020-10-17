@@ -69,7 +69,7 @@ var Parameters =
     step: Number(readConfig('dividerStep', 0.05))
   },
   tile: Algorithm.toBool(readConfig('tile', true)),
-  border: Algorithm.toBool(readConfig('border', false)),
+  border: Algorithm.toBool(readConfig('border', true)),
   margin:
   {
     top: Number(readConfig('marginTop', 0)),
@@ -957,7 +957,7 @@ function GlobalShortcut(name, shortcut, method)
   {direction: 'Down', amount: 1}
 ].forEach(function(entry)
 {
-  GlobalShortcut('Swap ' + entry.direction, 'Meta+Ctrl+' + entry.direction, (function()
+  GlobalShortcut('Swap ' + entry.direction, 'Alt+Shift+' + entry.direction, (function()
   {
     var amount = entry.amount;
     return function()
@@ -980,7 +980,7 @@ function GlobalShortcut(name, shortcut, method)
   {direction: 'Right', amount: 1}
 ].forEach(function(entry)
 {
-  GlobalShortcut('Move/Swap ' + entry.direction, 'Meta+Ctrl+' + entry.direction, (function()
+  GlobalShortcut('Move/Swap ' + entry.direction, 'Alt+Shift+' + entry.direction, (function()
   {
     var amount = entry.amount;
     return function()
@@ -998,7 +998,7 @@ function GlobalShortcut(name, shortcut, method)
   })());
 });
 
-GlobalShortcut('Move Next Desktop/Screen', 'Meta+End', function()
+GlobalShortcut('Move Next Desktop/Screen', 'Alt+End', function()
 {
   var client = workspace.activeClient;
   if (client.screen < workspace.numScreens - 1)
@@ -1012,7 +1012,7 @@ GlobalShortcut('Move Next Desktop/Screen', 'Meta+End', function()
   workspace.currentDesktop = client.desktop;
 });
 
-GlobalShortcut('Move Previous Desktop/Screen', 'Meta+Home', function()
+GlobalShortcut('Move Previous Desktop/Screen', 'Alt+Home', function()
 {
   var client = workspace.activeClient;
   if (client.screen > 0)
@@ -1031,7 +1031,7 @@ GlobalShortcut('Move Previous Desktop/Screen', 'Meta+Home', function()
   {text: 'Decrease', shortcut: '-', amount: -1}
 ].forEach(function(entry)
 {
-  GlobalShortcut(entry.text + ' Size', 'Meta+' + entry.shortcut, (function()
+  GlobalShortcut(entry.text + ' Size', 'Alt+' + entry.shortcut, (function()
   {
     var amount = entry.amount;
     return function()
@@ -1048,7 +1048,7 @@ GlobalShortcut('Move Previous Desktop/Screen', 'Meta+Home', function()
   })());
 });
 
-GlobalShortcut('Minimize Others/Unminimize Desktop', 'Meta+M', function()
+GlobalShortcut('Minimize Others/Unminimize Desktop', 'Alt+M', function()
 {
   if (!layout.activities.hasOwnProperty(workspace.currentActivity))
     return -1;
@@ -1093,7 +1093,7 @@ GlobalShortcut('Minimize Others/Unminimize Desktop', 'Meta+M', function()
   return 0;
 });
 
-GlobalShortcut('Tile/Float', 'Meta+T', function()
+GlobalShortcut('Tile/Float', 'Alt+T', function()
 {
   var client = workspace.activeClient;
   if (!Client.valid(client) || Client.ignored(client))
@@ -1105,24 +1105,24 @@ GlobalShortcut('Tile/Float', 'Meta+T', function()
   return 0;
 });
 
-GlobalShortcut('Toggle Tile', 'Meta+Shift+T', function()
+GlobalShortcut('Toggle Tile', 'Alt+Shift+T', function()
 {
   Parameters.tile = !Parameters.tile;
 });
 
-GlobalShortcut('Toggle Gap', 'Meta+G', function()
+GlobalShortcut('Toggle Gap', 'Alt+G', function()
 {
   Parameters.gap.show = !Parameters.gap.show;
   return layout.render();
 });
 
-GlobalShortcut('Toggle Border', 'Meta+B', function()
+GlobalShortcut('Toggle Border', 'Alt+B', function()
 {
   Parameters.border = !Parameters.border;
   return layout.render();
 });
 
-GlobalShortcut('Close Desktop', 'Meta+Q', function()
+GlobalShortcut('Close Desktop', 'Alt+Q', function()
 {
   // looping is done backwards as the array is decreased in size in every iteration thus forward looping will result in skipping elements
   var clients = workspace.clientList();
@@ -1134,7 +1134,7 @@ GlobalShortcut('Close Desktop', 'Meta+Q', function()
   }
 });
 
-GlobalShortcut('Refresh', 'Meta+R', function()
+GlobalShortcut('Refresh', 'Alt+R', function()
 {
   InitClients();
   return layout.render();

@@ -35,7 +35,7 @@
       </entry>
       <entry name="border" type="bool">
         <label>default state of borders</label>
-        <default>false</default>
+        <default>true</default>
       </entry>
       <entry name="marginTop" type="int">
         <label>amount of space at the top in px</label>
